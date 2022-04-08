@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+</head>
+ 
+<body>
+
+    <canvas id='chart' width="400" height="400">
+
+<script>
+
+    const xlabels = [];
+    const yyear = [];
+    const yarea = [];
+    const ygdp = [];
+    const ypopul = [];
+    const ypopdens = [];
+    const yvehicled =[];
+    const ytroad =[];
+    const yroadm =[];
+
+    async function chartIt(){
+
+        await getData();
+
+        const ctx = document.getElementById('chart').getContext('2d');
+        
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: xlabels,
+                datasets: [
+                    {   
+                        label: 'Road Death Per Million',
+                        data: yroadm,
+                        backgroundColor: 'red',
+                        borderColor: 'rgba(100, 120, 192, 0.2)',
+                        fill: true,
+                        borderWidth: 4
+                    },
+                    {   
+                        label: 'Total Road Deaths',
+                        data: ytroad,
+                        backgroundColor: 'blue',
+                        borderColor: 'rgba(100, 120, 192, 0.2)',
+                        fill: true,
+                        borderWidth: 4
+                    },
+                    {   
+                        label: 'Total Road Deaths',
+                        data: yvehicled,
+                        backgroundColor: 'purple',
+                        borderColor: 'rgba(100, 120, 192, 0.2)',
+                        fill: true,
+                        borderWidth: 4
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            // Include a dollar sign in the ticks
+                            callback: function(value, index, ticks) {
+                                return value;
+                            }
+                        }
+                    }
+                }
+            }
+    
+        });
+    }
+    
+    chartIt();
+
+    async function getData(){ 
+
+        
+        const response = await fetch('output.csv');     
+        const data = await response.text();
+    
+        
+        const rows = data.split('\n').slice(1);
+        rows.forEach(elt =>{
+            const column = elt.split(',');
+
+            const country= column[0];
+            xlabels.push(country);
+
+            const year= column[1];
+            yyear.push(year);
+
+            const area=  column[2].replaceAll('"','');
+            yarea.push(area);
+
+            const gdp= column[3].replaceAll('"','')
+            ygdp.push(gdp);
+
+            const popul= column[4].replaceAll('"','')
+            ypopul.push(popul);
+
+            const popdens= column[5].replaceAll('"','')
+            ypopdens.push(popdens);
+
+            const vehicled= column[6].replaceAll('"','')
+            yvehicled.push(vehicled);
+
+            const troad= column[7].replaceAll('"','')
+            ytroad.push(troad);
+
+            const roadm= column[8].replaceAll('"','')
+            yroadm.push(roadm);
+           console.log(roadm)
+
+
+           
+        });
+    }
+
+</script>
+</body>
+</html>
