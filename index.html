@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 </head>
- 
+
 <body>
-
-    <canvas id='chart' width="400" height="400">
-
+    <div class="header-container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="subtitle">European Union Road Safety Facts and Figures - 2018</h2>
+            </div>
+        </div>
+    </div> 
+<canvas id='chart' width="400" height="220"></canvas>
+<body>
+    <div class="footer-container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="footer-subtitle">copyright: Lucas Morais Bispo 2022</h2>
+            </div>
+        </div>
+    </div> 
 <script>
 
     const xlabels = [];
@@ -28,39 +45,79 @@
         await getData();
 
         const ctx = document.getElementById('chart').getContext('2d');
-        
+              
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: xlabels,
                 datasets: [
                     {   
-                        label: 'Road Death Per Million',
+                        label: 'Road Deaths (per million inhabitants)',
                         data: yroadm,
-                        backgroundColor: 'red',
+                        backgroundColor: '#4f3d5e',
                         borderColor: 'rgba(100, 120, 192, 0.2)',
                         fill: true,
-                        borderWidth: 4
+                        borderWidth: 1,
+                        hidden: false
+                    },
+                    {   
+                        label: 'Area (km²)',
+                        data: yarea,
+                        backgroundColor: 'teal',
+                        borderColor: 'teal',
+                        fill: true,
+                        borderWidth: 1,
+                        hidden: true
+                    },
+                    {   
+                        label: 'Population (Millions)',
+                        data: ypopul,
+                        backgroundColor: '#EF9E56',
+                        borderColor: 'rgba(100, 120, 192, 0.2)',
+                        fill: true,
+                        borderWidth: 1,
+                        hidden: true
+                    },
+                    {   
+                        label: 'GDP per capita (Thousand U$D)',
+                        data: ygdp,
+                        backgroundColor: '#fcbe03',
+                        borderColor: 'rgba(100, 120, 192, 0.2)',
+                        fill: true,
+                        borderWidth: 1,
+                        hidden: true
+                    },
+                    {   
+                        label: 'Inhabitants (1000 / km²)',
+                        data: ypopdens,
+                        backgroundColor: '#5d6e4b',
+                        borderColor: 'rgba(100, 120, 192, 0.2)',
+                        fill: true,
+                        borderWidth: 1,
+                        hidden: true
+                    },
+                    {   
+                        label: 'Vehicles (per 1000 inhabitants)',
+                        data: yvehicled,
+                        backgroundColor: '#4857a3',
+                        borderColor: 'rgba(100, 120, 192, 0.2)',
+                        fill: true,
+                        borderWidth: 1,
+                        hidden: true
                     },
                     {   
                         label: 'Total Road Deaths',
                         data: ytroad,
-                        backgroundColor: 'blue',
-                        borderColor: 'rgba(100, 120, 192, 0.2)',
+                        backgroundColor: '#6648a3',
+                        borderColor: '#48517a',
                         fill: true,
-                        borderWidth: 4
+                        borderWidth: 1,
+                        hidden: true
                     },
-                    {   
-                        label: 'Total Road Deaths',
-                        data: yvehicled,
-                        backgroundColor: 'purple',
-                        borderColor: 'rgba(100, 120, 192, 0.2)',
-                        fill: true,
-                        borderWidth: 4
-                    }
                 ]
             },
             options: {
+                borderColor: red,
                 scales: {
                     y: {
                         ticks: {
@@ -77,15 +134,18 @@
     }
     
     chartIt();
+    //get data from CSV function
 
     async function getData(){ 
 
-        
+        //read file
         const response = await fetch('output.csv');     
         const data = await response.text();
-    
-        
+
+
         const rows = data.split('\n').slice(1);
+
+
         rows.forEach(elt =>{
             const column = elt.split(',');
 
@@ -95,30 +155,27 @@
             const year= column[1];
             yyear.push(year);
 
-            const area=  column[2].replaceAll('"','');
+            const area= column[2].replaceAll('"','');
             yarea.push(area);
 
-            const gdp= column[3].replaceAll('"','')
-            ygdp.push(gdp);
-
-            const popul= column[4].replaceAll('"','')
+            const popul= column[3].replaceAll('"','').slice(0,-6);
             ypopul.push(popul);
 
-            const popdens= column[5].replaceAll('"','')
+            const gdp= column[4].replaceAll('"','').slice(0,-2);
+            ygdp.push(gdp);
+
+            const popdens= column[5].replaceAll('"','');
             ypopdens.push(popdens);
 
-            const vehicled= column[6].replaceAll('"','')
+            const vehicled= column[6].replaceAll('"','');
             yvehicled.push(vehicled);
 
-            const troad= column[7].replaceAll('"','')
+            const troad= column[7].replaceAll('"','');
             ytroad.push(troad);
 
-            const roadm= column[8].replaceAll('"','')
+            const roadm= column[8].replaceAll('"','');
             yroadm.push(roadm);
-           console.log(roadm)
-
-
-           
+          
         });
     }
 

@@ -1,0 +1,33 @@
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+.header-container,
+.footer-container{
+    display: flex;
+    background-color: #EF9E56;
+    margin-bottom: 20px;
+}
+
+.header-container{
+    justify-content: center;
+}
+.footer-container{
+    margin-top: 20px;
+    justify-content: end;
+}
+
+.subtitle{
+    font-size: 60;
+    font-weight: 900;
+
+}
+
+.footer-subtitle{
+    font-size: 14px;
+    padding-bottom:20px 0px;
+    padding-right: 30px
+}
+.canvas{
+    margin: auto;
+}
