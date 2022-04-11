@@ -4,7 +4,7 @@ for Datopian
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-###  Web Scraper
+##  Web Scraper
 **_./index.ts_**
 Gets data from Wikipedia's article table and save it to CSV.
 
@@ -14,7 +14,7 @@ Node.Js libraries used:
 - axios
 - cheerio
 
-###  Chart
+##  Chart
 
 
 **_./index.html_**
@@ -27,7 +27,7 @@ Dependencies applied:
 - Bootstrap
 - Google Fonts (optional)
 
-### Data Package
+## Data Package
 
 **_./data-package.json_**<br>
 
