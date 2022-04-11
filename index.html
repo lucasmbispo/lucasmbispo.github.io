@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>Datopian</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <div class="header-container">
         <div class="row">
-            <div class="col-lg-6">
-                <h2 class="subtitle">European Union Road Safety Facts and Figures - 2018</h2>
+            <div class="col-lg ">
+                <h2 class="title">European Union Road Safety Facts and Figures - 2018</h2>
+                <h2 class="title"></h2>
             </div>
         </div>
     </div> 
-<canvas id='chart' width="400" height="220"></canvas>
+
+
+
+<div class="chart-container">
+    <canvas id='chart'></canvas>
+</div>    
+
 <body>
     <div class="footer-container">
         <div class="row">
-            <div class="col-lg-6">
-                <h2 class="footer-subtitle">copyright: Lucas Morais Bispo 2022</h2>
+            <div class="col-lg">
+                <h3 class="footer-subtitle">DATOPIAN</h2>
             </div>
         </div>
     </div> 
@@ -57,6 +64,7 @@
                         backgroundColor: '#4f3d5e',
                         borderColor: 'rgba(100, 120, 192, 0.2)',
                         fill: true,
+                        borderRadius: 5,
                         borderWidth: 1,
                         hidden: false
                     },
@@ -66,6 +74,7 @@
                         backgroundColor: 'teal',
                         borderColor: 'teal',
                         fill: true,
+                        borderRadius: 5,
                         borderWidth: 1,
                         hidden: true
                     },
@@ -75,6 +84,7 @@
                         backgroundColor: '#EF9E56',
                         borderColor: 'rgba(100, 120, 192, 0.2)',
                         fill: true,
+                        borderRadius: 5,
                         borderWidth: 1,
                         hidden: true
                     },
@@ -84,6 +94,7 @@
                         backgroundColor: '#fcbe03',
                         borderColor: 'rgba(100, 120, 192, 0.2)',
                         fill: true,
+                        borderRadius: 5,
                         borderWidth: 1,
                         hidden: true
                     },
@@ -94,6 +105,7 @@
                         borderColor: 'rgba(100, 120, 192, 0.2)',
                         fill: true,
                         borderWidth: 1,
+                        borderRadius: 5,
                         hidden: true
                     },
                     {   
@@ -102,6 +114,7 @@
                         backgroundColor: '#4857a3',
                         borderColor: 'rgba(100, 120, 192, 0.2)',
                         fill: true,
+                        borderRadius: 5,
                         borderWidth: 1,
                         hidden: true
                     },
@@ -111,15 +124,26 @@
                         backgroundColor: '#6648a3',
                         borderColor: '#48517a',
                         fill: true,
+                        borderRadius: 5,
                         borderWidth: 1,
                         hidden: true
                     },
                 ]
             },
             options: {
-                borderColor: red,
+                maintainAspectRatio: false,
+                layout:{
+                    padding: {
+                        left: 50,
+                        right: 50,
+            }
+                },
+                responsive: true,
+                
                 scales: {
                     y: {
+                        suggestedMin: 30,
+                        suggestedMax: 50,
                         ticks: {
                             // Include a dollar sign in the ticks
                             callback: function(value, index, ticks) {
@@ -127,6 +151,7 @@
                             }
                         }
                     }
+
                 }
             }
     
@@ -170,7 +195,7 @@
             const vehicled= column[6].replaceAll('"','');
             yvehicled.push(vehicled);
 
-            const troad= column[7].replaceAll('"','');
+            const troad= column[7].replaceAll('"','').replaceAll('.','');
             ytroad.push(troad);
 
             const roadm= column[8].replaceAll('"','');
@@ -181,4 +206,6 @@
 
 </script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </html>

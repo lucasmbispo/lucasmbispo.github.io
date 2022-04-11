@@ -35,7 +35,7 @@ const getTableData = async (): Promise<Array<any>> => {
                 if(idx !== 6 && idx !== 9 && idx !== 10)
 
                 {
-                    //set and title
+                    //set column title
                     keys[idx]=key;
 
                 }
