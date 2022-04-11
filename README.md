@@ -5,7 +5,7 @@ for Datopian
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 ###  Web Scraper
-**index.ts**
+**index.ts**<br><br>
 Gets data from Wikipedia's article table and save it to CSV.
 
 Node.Js libraries used:
@@ -17,7 +17,7 @@ Node.Js libraries used:
 ###  Chart
 
 
-**index.html**
+**index.html**<br><br>
 
 Reads CSV file and returns bars chart.
 
@@ -29,6 +29,6 @@ Dependencies applied:
 
 ### Data Package
 
-**data-package.json**
+**data-package.json**<br><br>
 
 Tabular data package was generated using the data-cli tool inside a temporary folder.
