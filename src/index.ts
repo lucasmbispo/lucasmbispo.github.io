@@ -42,39 +42,37 @@ const getTableData = async (): Promise<Array<any>> => {
 
             });
 
-            //create and set Year column
+            //create the 'year' column
             keys[10] = 'Year'
 
-
-
-            //console.info(JSON.stringify(keys));
-
-            
         }
            
         const nextCountry = {};
         
-        //for each column
+        //find for each column
         $(elem).find('td').each((idx, elem) => {
 
+            //each element, formatted
             const value = $(elem).text().trim().replace(',','.');
 
             //ignore the columns I don't want
             if(idx !== 6 && idx !== 9 && idx !== 10){
 
+                //some more formatting
                 nextCountry[keys[idx]] = value.replace(',','.');
+
+                //setting the Year column values to 2018
                 nextCountry[keys[10]] = 2018;
                 
-
-                // console.info(idx);
+        
             }
         });
-        // 
+
+        //next country
         result.push(nextCountry);
              
     });
 
-    //return results//
 
     //remove the last row (totals)
     const list = result.slice(0,-1);
@@ -88,7 +86,7 @@ const getTableData = async (): Promise<Array<any>> => {
 //getTableData().then((results) => {
 // console.info(JSON.stringify(results));
 
-//save to csv//
+//save to csv function
 const saveCsv = async (countries: Array<any>) => {
     //console.info(`Saving ${countries.length} records`);
 
@@ -106,7 +104,7 @@ await fsp.writeFile("./output.csv", csv, {encoding: "utf-8"});
 //execute function then write file
 getTableData().then(saveCsv);  
 
-//sort function
+//sort function by column string title
 
 function sortByKey(array, key) {
     return array.sort((a, b) => {

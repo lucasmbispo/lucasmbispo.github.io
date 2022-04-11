@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,8 @@
 </head>
 
 <body>
+
+    <!--header start-->
     <div class="header-container">
         <div class="row">
             <div class="col-lg ">
@@ -19,15 +22,16 @@
                 <h2 class="title"></h2>
             </div>
         </div>
-    </div> 
+    </div>
+    <!--header end--> 
 
-
-
-<div class="chart-container">
-    <canvas id='chart'></canvas>
-</div>    
-
-<body>
+    <!--chart canvas start-->
+    <div class="chart-container">
+        <canvas id='chart'></canvas>
+    </div>   
+    <!--chart canvas end-->
+     
+    <!--footer start-->
     <div class="footer-container">
         <div class="row">
             <div class="col-lg">
@@ -35,7 +39,11 @@
             </div>
         </div>
     </div> 
-<script>
+    <!--footer end-->
+
+    <!--script start--> 
+
+    <script>
 
     const xlabels = [];
     const yyear = [];
@@ -47,12 +55,19 @@
     const ytroad =[];
     const yroadm =[];
 
+
+    // chart function
+
     async function chartIt(){
 
-        await getData();
+        // get data from CSV function call
 
+        await getData();
+        
         const ctx = document.getElementById('chart').getContext('2d');
-              
+        
+        // chart generator
+
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -142,8 +157,6 @@
                 
                 scales: {
                     y: {
-                        suggestedMin: 30,
-                        suggestedMax: 50,
                         ticks: {
                             // Include a dollar sign in the ticks
                             callback: function(value, index, ticks) {
@@ -154,11 +167,14 @@
 
                 }
             }
-    
+
         });
     }
+
     
+
     chartIt();
+
     //get data from CSV function
 
     async function getData(){ 
@@ -167,9 +183,10 @@
         const response = await fetch('output.csv');     
         const data = await response.text();
 
-
+       //make rows every time the line breaks, except the first one
         const rows = data.split('\n').slice(1);
 
+        //column elements generator loop with a lot of text formatting
 
         rows.forEach(elt =>{
             const column = elt.split(',');
@@ -200,12 +217,18 @@
 
             const roadm= column[8].replaceAll('"','');
             yroadm.push(roadm);
-          
+            
         });
     }
 
-</script>
+    </script>
+
+    <!--script end-->
+   
+
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
 </html>
