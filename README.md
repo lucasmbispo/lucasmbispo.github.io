@@ -29,6 +29,6 @@ Dependencies applied:
 
 ### Data Package
 
-<br>**_./data-package.json_**<br>
+**_./data-package.json_**<br>
 
 Tabular data package was generated using the data-cli tool inside a temporary folder.
