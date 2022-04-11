@@ -14,6 +14,7 @@ Node.Js libraries used:
 - fs
 - axios
 - cheerio
+- json2csv
 
 ##  Chart
 
