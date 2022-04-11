@@ -12,7 +12,7 @@ Node.Js libraries used:
 - data-cli
 - fs
 - axios
-- cheerio
+- cheerio<br>
 
 ###  Chart
 
@@ -25,7 +25,7 @@ Dependencies applied:
 
 - Chart.JS
 - Bootstrap
-- Google Fonts (optional)
+- Google Fonts (optional)<br>
 
 ### Data Package
 
